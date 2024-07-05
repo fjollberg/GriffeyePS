@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="CEModel" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="AlternativeHash">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="HashName" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="HashName" Type="Edm.String" Nullable="false" />
+        <Property Name="HashValue" Type="Edm.String" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityType Name="Case">
+        <Key>
+          <PropertyRef Name="CaseID" />
+        </Key>
+        <Property Name="CaseID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="CaseNumber" Type="Edm.String" />
+        <Property Name="ContactOrganization" Type="Edm.String" />
+        <Property Name="ContactName" Type="Edm.String" />
+        <Property Name="ContactPhone" Type="Edm.String" />
+        <Property Name="ContactEmail" Type="Edm.String" />
+        <Property Name="ContactTitle" Type="Edm.String" />
+        <Property Name="TotalMediaFiles" Type="Edm.Int32" />
+        <Property Name="TotalPrecategorized" Type="Edm.Int32" />
+        <Property Name="SeizureDate" Type="Edm.DateTimeOffset" />
+        <Property Name="SourceApplicationName" Type="Edm.String" />
+        <Property Name="SourceApplicationVersion" Type="Edm.String" />
+        <NavigationProperty Name="CaseMetadata" Type="Collection(CEModel.CaseMetadata)" />
+        <NavigationProperty Name="Media" Type="Collection(CEModel.Media)" />
+        <NavigationProperty Name="Identifiers" Type="Collection(CEModel.Identifier)" />
+      </EntityType>
+      <EntityType Name="CaseMetadata">
+        <Key>
+          <PropertyRef Name="CaseID" />
+          <PropertyRef Name="PropertyName" />
+        </Key>
+        <Property Name="CaseID" Type="Edm.Guid" />
+        <Property Name="PropertyName" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyValue" Type="Edm.String" />
+        <NavigationProperty Name="Case" Type="CEModel.Case">
+          <ReferentialConstraint Property="CaseID" ReferencedProperty="CaseID" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Exif">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="PropertyName" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyName" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyValue" Type="Edm.String" />
+        <Property Name="PropertyGroup" Type="Edm.String" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityType Name="Media">
+        <Key>
+          <PropertyRef Name="MD5" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="MediaID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Category" Type="Edm.Byte" />
+        <Property Name="SHA1" Type="Edm.String" />
+        <Property Name="VictimIdentified" Type="Edm.Boolean" />
+        <Property Name="OffenderIdentified" Type="Edm.Boolean" />
+        <Property Name="IsDistributed" Type="Edm.Boolean" />
+        <Property Name="Comments" Type="Edm.String" />
+        <Property Name="Tags" Type="Edm.String" />
+        <Property Name="Series" Type="Edm.String" />
+        <Property Name="MediaSize" Type="Edm.Int64" />
+        <Property Name="RelativeFilePath" Type="Edm.String" />
+        <Property Name="DateUpdated" Type="Edm.DateTimeOffset" />
+        <Property Name="IsPrecategorized" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="PrecategorizationSource" Type="Edm.String" />
+        <Property Name="IsSuspected" Type="Edm.Boolean" />
+        <Property Name="MimeType" Type="Edm.String" />
+        <Property Name="SelfGenerated" Type="Edm.Boolean" />
+        <Property Name="PhotoDNA" Type="Edm.String" />
+        <NavigationProperty Name="AlternativeHashes" Type="Collection(CEModel.AlternativeHash)" />
+        <NavigationProperty Name="Exifs" Type="Collection(CEModel.Exif)" />
+        <NavigationProperty Name="MediaFiles" Type="Collection(CEModel.MediaFile)" />
+        <NavigationProperty Name="Repositories" Type="Collection(CEModel.Repository)" />
+        <NavigationProperty Name="Cases" Type="Collection(CEModel.Case)" />
+        <NavigationProperty Name="Segments" Type="Collection(CEModel.Segment)" />
+        <NavigationProperty Name="MediaMetadata" Type="Collection(CEModel.MediaMetadata)" />
+        <NavigationProperty Name="Identifiers" Type="Collection(CEModel.Identifier)" />
+      </EntityType>
+      <EntityType Name="Repository">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="RepositoryName" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="RepositoryName" Type="Edm.String" Nullable="false" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityType Name="MediaFile">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="MediaFileID" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="MediaFileID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FileName" Type="Edm.String" />
+        <Property Name="FilePath" Type="Edm.String" />
+        <Property Name="Created" Type="Edm.DateTimeOffset" />
+        <Property Name="Written" Type="Edm.DateTimeOffset" />
+        <Property Name="Accessed" Type="Edm.DateTimeOffset" />
+        <Property Name="Unallocated" Type="Edm.Boolean" />
+        <Property Name="SourceID" Type="Edm.String" />
+        <Property Name="PhysicalLocation" Type="Edm.Int64" />
+        <Property Name="Deleted" Type="Edm.Boolean" />
+        <Property Name="ParentMD5" Type="Edm.String" />
+        <Property Name="ParentFileName" Type="Edm.String" />
+        <Property Name="ParentFilePath" Type="Edm.String" />
+        <Property Name="ParentPhysicalLocation" Type="Edm.Int64" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityType Name="Segment">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="SegmentIndex" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="SegmentIndex" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Start" Type="Edm.String" />
+        <Property Name="End" Type="Edm.String" />
+        <Property Name="Category" Type="Edm.Byte" Nullable="false" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityType Name="Identifier">
+        <Key>
+          <PropertyRef Name="MD5" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="IdentifierType" Type="Edm.String" />
+        <Property Name="Comments" Type="Edm.String" />
+        <Property Name="Tags" Type="Edm.String" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="Application" Type="Edm.String" />
+        <NavigationProperty Name="Events" Type="Collection(CEModel.Event)" />
+        <NavigationProperty Name="IdentifierMetadata" Type="Collection(CEModel.IdentifierMetadata)" />
+        <NavigationProperty Name="Cases" Type="Collection(CEModel.Case)" />
+        <NavigationProperty Name="Media" Type="Collection(CEModel.Media)" />
+      </EntityType>
+      <EntityType Name="Event">
+        <Key>
+          <PropertyRef Name="EventID" />
+        </Key>
+        <Property Name="EventID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="EventTime" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="EventType" Type="Edm.String" />
+        <NavigationProperty Name="Identifiers" Type="Collection(CEModel.Identifier)" />
+        <NavigationProperty Name="EventMetadata" Type="Collection(CEModel.EventMetadata)" />
+      </EntityType>
+      <EntityType Name="IdentifierMetadata">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="PropertyName" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyName" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyValue" Type="Edm.String" />
+        <NavigationProperty Name="Identifier" Type="CEModel.Identifier" />
+      </EntityType>
+      <EntityType Name="EventMetadata">
+        <Key>
+          <PropertyRef Name="EventID" />
+          <PropertyRef Name="PropertyName" />
+        </Key>
+        <Property Name="EventID" Type="Edm.Guid" />
+        <Property Name="PropertyName" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyValue" Type="Edm.String" />
+        <NavigationProperty Name="Event" Type="CEModel.Event">
+          <ReferentialConstraint Property="EventID" ReferencedProperty="EventID" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Alert">
+        <Key>
+          <PropertyRef Name="AlertID" />
+        </Key>
+        <Property Name="AlertID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Priority" Type="Edm.Byte" Nullable="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ExpiryDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="ReferenceNumber" Type="Edm.String" />
+        <Property Name="ContactOrganization" Type="Edm.String" />
+        <Property Name="ContactName" Type="Edm.String" />
+        <Property Name="ContactPhone" Type="Edm.String" />
+        <Property Name="ContactEmail" Type="Edm.String" />
+        <Property Name="ContactTitle" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="SourceSystem" Type="Edm.String" />
+        <NavigationProperty Name="AlertTriggers" Type="Collection(CEModel.AlertTrigger)" />
+        <NavigationProperty Name="AlertHitNotifications" Type="Collection(CEModel.AlertHitNotification)" />
+      </EntityType>
+      <EntityType Name="AlertTrigger">
+        <Key>
+          <PropertyRef Name="TriggerID" />
+          <PropertyRef Name="AlertID" />
+        </Key>
+        <Property Name="TriggerID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="AlertID" Type="Edm.Guid" />
+        <Property Name="TriggerValue" Type="Edm.String" />
+        <Property Name="TriggerType" Type="Edm.String" />
+        <NavigationProperty Name="Alert" Type="CEModel.Alert">
+          <ReferentialConstraint Property="AlertID" ReferencedProperty="AlertID" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="AlertHit">
+        <Key>
+          <PropertyRef Name="HitID" />
+        </Key>
+        <Property Name="HitID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="HitDate" Type="Edm.DateTimeOffset" Nullable="false" />
+        <Property Name="ReferenceNumber" Type="Edm.String" />
+        <Property Name="ContactOrganization" Type="Edm.String" />
+        <Property Name="ContactName" Type="Edm.String" />
+        <Property Name="ContactPhone" Type="Edm.String" />
+        <Property Name="ContactEmail" Type="Edm.String" />
+        <Property Name="ContactTitle" Type="Edm.String" />
+        <NavigationProperty Name="AlertHitNotifications" Type="Collection(CEModel.AlertHitNotification)" />
+      </EntityType>
+      <EntityType Name="AlertHitNotification">
+        <Key>
+          <PropertyRef Name="NotificationID" />
+        </Key>
+        <Property Name="NotificationID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="HitID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Status" Type="Edm.String" />
+        <Property Name="AlertReferenceNumber" Type="Edm.String" />
+        <Property Name="AlertContactOrganization" Type="Edm.String" />
+        <Property Name="AlertContactName" Type="Edm.String" />
+        <Property Name="AlertContactPhone" Type="Edm.String" />
+        <Property Name="AlertContactEmail" Type="Edm.String" />
+        <Property Name="AlertContactTitle" Type="Edm.String" />
+        <Property Name="MatchPercentage" Type="Edm.Byte" />
+        <Property Name="AlertID" Type="Edm.Guid" />
+        <NavigationProperty Name="AlertHit" Type="CEModel.AlertHit" />
+        <NavigationProperty Name="Alert" Type="CEModel.Alert">
+          <ReferentialConstraint Property="AlertID" ReferencedProperty="AlertID" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="MediaMetadata">
+        <Key>
+          <PropertyRef Name="MD5" />
+          <PropertyRef Name="PropertyName" />
+        </Key>
+        <Property Name="MD5" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyName" Type="Edm.String" Nullable="false" />
+        <Property Name="PropertyValue" Type="Edm.String" />
+        <NavigationProperty Name="Media" Type="CEModel.Media" />
+      </EntityType>
+      <EntityContainer Name="Container">
+        <EntitySet Name="AlternativeHashes" EntityType="CEModel.AlternativeHash">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="Cases" EntityType="CEModel.Case">
+          <NavigationPropertyBinding Path="CaseMetadata" Target="CaseMetadata" />
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+          <NavigationPropertyBinding Path="Identifiers" Target="Identifiers" />
+        </EntitySet>
+        <EntitySet Name="CaseMetadata" EntityType="CEModel.CaseMetadata">
+          <NavigationPropertyBinding Path="Case" Target="Cases" />
+        </EntitySet>
+        <EntitySet Name="Exifs" EntityType="CEModel.Exif">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="Media" EntityType="CEModel.Media">
+          <NavigationPropertyBinding Path="AlternativeHashes" Target="AlternativeHashes" />
+          <NavigationPropertyBinding Path="Exifs" Target="Exifs" />
+          <NavigationPropertyBinding Path="MediaFiles" Target="MediaFiles" />
+          <NavigationPropertyBinding Path="Repositories" Target="Repositories" />
+          <NavigationPropertyBinding Path="Cases" Target="Cases" />
+          <NavigationPropertyBinding Path="Segments" Target="Segments" />
+          <NavigationPropertyBinding Path="MediaMetadata" Target="MediaMetadata" />
+          <NavigationPropertyBinding Path="Identifiers" Target="Identifiers" />
+        </EntitySet>
+        <EntitySet Name="Repositories" EntityType="CEModel.Repository">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="MediaFiles" EntityType="CEModel.MediaFile">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="Segments" EntityType="CEModel.Segment">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="Identifiers" EntityType="CEModel.Identifier">
+          <NavigationPropertyBinding Path="Events" Target="Events" />
+          <NavigationPropertyBinding Path="IdentifierMetadata" Target="IdentifierMetadata" />
+          <NavigationPropertyBinding Path="Cases" Target="Cases" />
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+        <EntitySet Name="Events" EntityType="CEModel.Event">
+          <NavigationPropertyBinding Path="Identifiers" Target="Identifiers" />
+          <NavigationPropertyBinding Path="EventMetadata" Target="EventMetadata" />
+        </EntitySet>
+        <EntitySet Name="IdentifierMetadata" EntityType="CEModel.IdentifierMetadata">
+          <NavigationPropertyBinding Path="Identifier" Target="Identifiers" />
+        </EntitySet>
+        <EntitySet Name="EventMetadata" EntityType="CEModel.EventMetadata">
+          <NavigationPropertyBinding Path="Event" Target="Events" />
+        </EntitySet>
+        <EntitySet Name="Alerts" EntityType="CEModel.Alert">
+          <NavigationPropertyBinding Path="AlertTriggers" Target="AlertTriggers" />
+          <NavigationPropertyBinding Path="AlertHitNotifications" Target="AlertHitNotifications" />
+        </EntitySet>
+        <EntitySet Name="AlertTriggers" EntityType="CEModel.AlertTrigger">
+          <NavigationPropertyBinding Path="Alert" Target="Alerts" />
+        </EntitySet>
+        <EntitySet Name="AlertHits" EntityType="CEModel.AlertHit">
+          <NavigationPropertyBinding Path="AlertHitNotifications" Target="AlertHitNotifications" />
+        </EntitySet>
+        <EntitySet Name="AlertHitNotifications" EntityType="CEModel.AlertHitNotification">
+          <NavigationPropertyBinding Path="AlertHit" Target="AlertHits" />
+          <NavigationPropertyBinding Path="Alert" Target="Alerts" />
+        </EntitySet>
+        <EntitySet Name="MediaMetadata" EntityType="CEModel.MediaMetadata">
+          <NavigationPropertyBinding Path="Media" Target="Media" />
+        </EntitySet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
