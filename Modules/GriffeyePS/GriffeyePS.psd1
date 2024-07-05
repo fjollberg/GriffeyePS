@@ -26,7 +26,7 @@ CompanyName = ''
 Copyright = '(c) Fredrik Jönsson 2024. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Collection of utils for interaction with Griffeye CS from Powershell for automation etc.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '7.3'
