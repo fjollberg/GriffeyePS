@@ -1,5 +1,10 @@
 # GriffeyePS
 
+| Main branch |
+|------------|
+| [Main Branch](https://github.com/fjollberg/GriffeyePS/actions/workflows/powershell.yml/badge.svg?branch=main) |
+
+
 Powershell utility functions to interact with [Griffeye CS](https://www.magnetforensics.com/products/magnet-griffeye/),
 a system used to analyse large amounts of digital media, e.g. in child exploitation investigations.
 
