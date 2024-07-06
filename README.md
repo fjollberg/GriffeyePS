@@ -1,11 +1,13 @@
 # GriffeyePS
 
-Powershell utility functions to interact with [Griffeye CS](https://www.magnetforensics.com/products/magnet-griffeye/).
+Powershell utility functions to interact with [Griffeye CS](https://www.magnetforensics.com/products/magnet-griffeye/),
+a system used to analyse large amounts of digital media, e.g. in child exploitation investigations.
 
 Includes Powershell wrappers for the REST API and CLI interfaces provided by Magnet, as well as a VICS json parser
 which can handle most common aspects of large VICS reports fast and with low memory requirements.
 
-Used to make scripting tools and automation flows around Griffeye CS.
+These tools are used to make scripting tools and automation flows around Griffeye CS. Due to large amounts of
+data, automation is an essential component to speed up handling and free human resources for analysis.
 
 ## General information
 
