@@ -106,7 +106,7 @@ function ConvertTo-SecureToken {
 
   .Example
     $ApiBaseURL = https://myserver.mydomain:17000/api
-    Invoke-GriffeyeServerInfo -ApiBaseURL $GriffeyeConfiguration.APIUrl
+    Invoke-GriffeyeServerInfo -ApiBaseURL $ApiBaseURL
 #>
 function Invoke-GriffeyeServerInfo {
     [cmdletbinding()]
