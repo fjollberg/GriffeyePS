@@ -5,8 +5,9 @@
 | ![Main Branch](https://github.com/fjollberg/GriffeyePS/actions/workflows/powershell.yml/badge.svg?branch=main) |
 
 
-Powershell utility functions to interact with [Griffeye CS](https://www.magnetforensics.com/products/magnet-griffeye/),
-a system used to analyse large amounts of digital media, e.g. in child exploitation investigations.
+Powershell utility functions to interact with [Griffeye CS](https://www.magnetforensics.com/products/magnet-griffeye/)
+by [Magnet Forensics](https://www.magnetforensics.com/), a system used to analyse large amounts of digital media,
+e.g. in child exploitation investigations.
 
 Includes Powershell wrappers for the REST API and CLI interfaces provided by Magnet, as well as a VICS json parser
 which can handle most common aspects of large VICS reports fast and with low memory requirements.
