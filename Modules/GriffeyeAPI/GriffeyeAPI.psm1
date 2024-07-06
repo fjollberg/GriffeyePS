@@ -185,10 +185,10 @@ function Invoke-GriffeyeToken {
         [switch]$ClientCredentialsGrant,
 
         [parameter(Mandatory = $true, ParameterSetName = 'client_credentials')]
-       [String]$ClientID,
+        [String]$ClientID,
 
         [parameter(Mandatory = $true, ParameterSetName = 'client_credentials')]
-       [String]$ClientSecret
+        [String]$ClientSecret
     )
 
     process {
@@ -205,6 +205,7 @@ function Invoke-GriffeyeToken {
                 refresh_token = $Token.RefreshToken | ConvertFrom-SecureString -AsPlainText
             }
         } elseif ($ClientCredentialsGrant) {
+            # Note: this code is not verified.
             $Body = @{
                 grant_type = "client_credentials"
                 client_id = [System.Web.HttpUtility]::UrlEncode($ClientID)
