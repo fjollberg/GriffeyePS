@@ -1,7 +1,7 @@
 ﻿# Modules
 
 A breif description of the purpose of the included modules.
-s
+
 ### GriffeyePS
 
 An empty module which just references all the other modules for convenience.
