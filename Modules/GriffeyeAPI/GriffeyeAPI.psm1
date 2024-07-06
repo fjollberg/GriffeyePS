@@ -14,7 +14,7 @@ function ConvertTo-Vics20Case {
 
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [parameter(Mandatory, ValueFromPipeline = $true)]
         [PSCustomObject]$Case
     )
 
@@ -38,7 +38,7 @@ function ConvertTo-Vics20Media {
 
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [parameter(Mandatory, ValueFromPipeline = $true)]
         [PSCustomObject]$Media
     )
     process {
@@ -76,7 +76,7 @@ function ConvertTo-Vics20Media {
 function ConvertTo-SecureToken {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [parameter(Mandatory, ValueFromPipeline = $true)]
         [PSCustomObject]$PlainToken
     )
     process {
@@ -111,7 +111,7 @@ function ConvertTo-SecureToken {
 function Invoke-GriffeyeServerInfo {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL
     )
     process {
@@ -166,28 +166,28 @@ function Invoke-GriffeyeServerInfo {
 function Invoke-GriffeyeToken {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'password')]
+        [parameter(Mandatory, ParameterSetName = 'password')]
         [switch]$PasswordGrant,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'password')]
+        [parameter(Mandatory, ParameterSetName = 'password')]
         [PSCredential]$Credential,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'refresh')]
+        [parameter(Mandatory, ParameterSetName = 'refresh')]
         [switch]$Refresh,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'refresh')]
+        [parameter(Mandatory, ParameterSetName = 'refresh')]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'client_credentials')]
+        [parameter(Mandatory, ParameterSetName = 'client_credentials')]
         [switch]$ClientCredentialsGrant,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'client_credentials')]
+        [parameter(Mandatory, ParameterSetName = 'client_credentials')]
         [String]$ClientID,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'client_credentials')]
+        [parameter(Mandatory, ParameterSetName = 'client_credentials')]
         [String]$ClientSecret
     )
 
@@ -262,19 +262,19 @@ function Invoke-GriffeyeToken {
 function Invoke-GriffeyeCases {
     [cmdletbinding(DefaultParameterSetName = 'Common')]
     param (
-        [parameter(Mandatory = $true, ParameterSetName = 'Common')]
-        [parameter(Mandatory = $true, ParameterSetName = 'Filter')]
+        [parameter(Mandatory, ParameterSetName = 'Common')]
+        [parameter(Mandatory, ParameterSetName = 'Filter')]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'Common')]
-        [parameter(Mandatory = $true, ParameterSetName = 'Filter')]
+        [parameter(Mandatory, ParameterSetName = 'Common')]
+        [parameter(Mandatory, ParameterSetName = 'Filter')]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'Filter')]
+        [parameter(Mandatory, ParameterSetName = 'Filter')]
         [ValidateSet("name", "identifier", "status", "id", "accessrights")]
         [string]$FilterField,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'Filter')]
+        [parameter(Mandatory, ParameterSetName = 'Filter')]
         [ValidateNotNullOrEmpty()]
         [string]$FilterValue,
 
@@ -335,13 +335,13 @@ function Invoke-GriffeyeCases {
 function Invoke-GriffeyeInitializeCase {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Case,
 
         [parameter(Mandatory = $false)]
@@ -396,13 +396,13 @@ function Invoke-GriffeyeInitializeCase {
 function Invoke-GriffeyeInitializeFile {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Media,
 
         [parameter(Mandatory = $false)]
@@ -456,19 +456,19 @@ function Invoke-GriffeyeInitializeFile {
 function Invoke-GriffeyeFinalizeFile {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$MD5,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'CaseId')]
+        [parameter(Mandatory, ParameterSetName = 'CaseId')]
         [string]$CaseID,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'FileId')]
+        [parameter(Mandatory, ParameterSetName = 'FileId')]
         [string]$FileID,
 
         [parameter(Mandatory = $false)]
@@ -509,13 +509,13 @@ function Invoke-GriffeyeFinalizeFile {
 function Invoke-GriffeyeFinalizeCase {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$CaseID
     )
     process {
@@ -553,13 +553,13 @@ function Invoke-GriffeyeFinalizeCase {
 function Invoke-GriffeyeClearUnfinalizedUploads {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$CaseID
     )
     process {
@@ -621,25 +621,25 @@ function Invoke-GriffeyeClearUnfinalizedUploads {
 function Invoke-GriffeyeFileChunk {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'CaseId')]
+        [parameter(Mandatory, ParameterSetName = 'CaseId')]
         [string]$CaseID,
 
-        [parameter(Mandatory = $true, ParameterSetName = 'FileId')]
+        [parameter(Mandatory, ParameterSetName = 'FileId')]
         [string]$FileID,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$MD5,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [long]$Offset,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [byte[]]$Chunk
     )
     process {
@@ -704,19 +704,19 @@ function Invoke-GriffeyeFileChunk {
 function Invoke-GriffeyeUploadMedia {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Token,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$CaseID,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [PSCustomObject]$Media,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$Path,
 
         [parameter(Mandatory = $false)]
@@ -823,13 +823,13 @@ function Invoke-GriffeyeUploadMedia {
 function Invoke-GriffeyeVicsReportUpload {
     [cmdletbinding()]
     param (
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$ApiBaseURL,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory)]
         [System.Management.Automation.PSCredential] $Credential,
 
-        [parameter(Mandatory = $true)]
+        [parameter(Mandatory)]
         [string]$Path,
 
         [parameter(Mandatory = $false)]
