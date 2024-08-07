@@ -916,7 +916,9 @@ function Invoke-GriffeyeVicsReportUpload {
         }
 
         # Clean up any previous remains of broken imports.
-        Invoke-GriffeyeClearUnfinalizedUploads -ApiBaseURL $ApiBaseURL -Token $Context.token -CaseID $Case.Identifier -ErrorAction Ignore
+        try {
+            Invoke-GriffeyeClearUnfinalizedUploads -ApiBaseURL $ApiBaseURL -Token $Context.token -CaseID $Case.Identifier
+        } catch {}
 
         $Start = Get-Date
 
@@ -1024,7 +1026,9 @@ function Invoke-GriffeyeVicsReportUpload {
     finally {
         Write-Progress -Activity "Griffeye Vics Report Upload" -Status "Completed" -CurrentOperation "Finalizing complete" -Completed
         Write-Information "Cleaning up."
-        Invoke-GriffeyeClearUnfinalizedUploads -ApiBaseURL $ApiBaseURL -Token $Context.token -CaseID $Case.Identifier -ErrorAction Ignore
+        try {
+            Invoke-GriffeyeClearUnfinalizedUploads -ApiBaseURL $ApiBaseURL -Token $Context.token -CaseID $Case.Identifier
+        } catch {}
 
         if ($UploadJob) {
             Stop-Job -Job $UploadJob -ErrorAction Ignore
