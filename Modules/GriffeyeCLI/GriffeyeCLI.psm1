@@ -7,7 +7,7 @@
 param()
 
 
-$script:ConnectCLIExeName = "connect-cli.exe"
+$script:ConnectCLIExeName = "magnet-griffeye-connect-cli.exe"
 
 
 function Get-ConnectCLIException {
@@ -63,7 +63,7 @@ function Get-ConnectCLIVersion {
             Verbose = $VerbosePreference -eq "Continue"
         }
 
-        if (-not ((Invoke-ConnectCLI @Arguments) -match ".*Starting connect-cli (?<Major>[0-9]*)\.(?<Minor>[0-9]*)\.(?<Fix>[0-9]*)\.(?<Build>[0-9]*).*")) {
+        if (-not ((Invoke-ConnectCLI @Arguments) -match ".*Starting .* (?<Major>[0-9]*)\.(?<Minor>[0-9]*)\.(?<Fix>[0-9]*)\.(?<Build>[0-9]*).*")) {
             throw "Unable to parse output of Griffeye Connect CLI to find version"
         }
         [pscustomobject]@{
